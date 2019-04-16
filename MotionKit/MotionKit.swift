@@ -63,7 +63,7 @@ import CoreMotion
             manager.startAccelerometerUpdates(to: OperationQueue(), withHandler: {
                 (data, error) in
 
-                if error != nil {
+                if let error = error {
                     print("Error: %@", error)
                 }
                 valX = data!.acceleration.x
@@ -73,7 +73,9 @@ import CoreMotion
                 if values != nil {
                     values!(valX, valY, valZ)
                 }
-                let absoluteVal = sqrt(Double(valX * valX + valY * valY) + valZ * valZ)
+                let valA = Double(valX * valX + valY * valY)
+                let valB = valZ * valZ
+                let absoluteVal = sqrt(valA + valB)
                 self.delegate?.retrieveAccelerometerValues!(valX, y: valY, z: valZ, absoluteValue: absoluteVal)
             })
         } else {
@@ -100,7 +102,7 @@ import CoreMotion
             manager.startGyroUpdates(to: OperationQueue(), withHandler: {
                 (data, error) in
 
-                if error != nil {
+                if let error = error {
                     print("Error: %@", error)
                 }
                 valX = data!.rotationRate.x
@@ -110,7 +112,9 @@ import CoreMotion
                 if values != nil {
                     values!(valX, valY, valZ)
                 }
-                let absoluteVal = sqrt(Double(valX * valX + valY * valY) + valZ * valZ)
+                let valA = Double(valX * valX + valY * valY)
+                let valB = valZ * valZ
+                let absoluteVal = sqrt(valA + valB)
                 self.delegate?.retrieveGyroscopeValues!(valX, y: valY, z: valZ, absoluteValue: absoluteVal)
             })
 
@@ -137,7 +141,7 @@ import CoreMotion
             manager.startMagnetometerUpdates(to: OperationQueue()){
                 (data, error) in
 
-                if error != nil {
+                if let error = error {
                     print("Error: %@", error)
                 }
                 valX = data!.magneticField.x
@@ -147,7 +151,9 @@ import CoreMotion
                 if values != nil {
                     values!(valX, valY, valZ)
                 }
-                let absoluteVal = sqrt(Double(valX * valX + valY * valY) + valZ * valZ)
+                let valA = Double(valX * valX + valY * valY)
+                let valB = valZ * valZ
+                let absoluteVal = sqrt(valA + valB)
                 self.delegate?.retrieveMagnetometerValues!(valX, y: valY, z: valZ, absoluteValue: absoluteVal)
             }
 
@@ -174,7 +180,7 @@ import CoreMotion
             manager.startDeviceMotionUpdates(to: OperationQueue()){
                 (data, error) in
 
-                if error != nil {
+                if let error = error {
                     print("Error: %@", error)
                 }
                 if values != nil {
@@ -203,7 +209,7 @@ import CoreMotion
             manager.startDeviceMotionUpdates(to: OperationQueue()){
                 (data, error) in
 
-                if error != nil {
+                if let error = error {
                     print("Error: %@", error)
                 }
                 valX = data!.userAcceleration.x
@@ -237,7 +243,7 @@ import CoreMotion
             manager.startDeviceMotionUpdates(to: OperationQueue()){
                 (data, error) in
 
-                if error != nil {
+                if let error = error {
                     print("Error: %@", error)
                 }
                 valX = data!.gravity.x
@@ -270,7 +276,7 @@ import CoreMotion
             manager.startDeviceMotionUpdates(to: OperationQueue()){
                  (data, error) in
 
-                if error != nil {
+                if let error = error {
                     print("Error: %@", error)
                 }
                 if values != nil {
@@ -300,7 +306,7 @@ import CoreMotion
             manager.startDeviceMotionUpdates(to: OperationQueue()){
                  (data, error) in
 
-                if error != nil {
+                if let error = error {
                     print("Error: %@", error)
                 }
                 valX = data!.rotationRate.x
@@ -337,7 +343,7 @@ import CoreMotion
             manager.startDeviceMotionUpdates(to: OperationQueue()){
                  (data, error) in
 
-                if error != nil {
+                if let error = error {
                     print("Error: %@", error)
                 }
                 valX = data!.magneticField.field.x
